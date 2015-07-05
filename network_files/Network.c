@@ -1,3 +1,4 @@
+#include<stdlib.h>
 #include "Network.h"
 Network_info func_makeNetworkInformation(FILE *fp){
   
@@ -19,6 +20,10 @@ Network_info func_makeNetworkInformation(FILE *fp){
   for(i=0;i<ni.numPoint;i++)
     for(j=0;j<ni.numPoint;j++)
       ni.adjacent[i][j] = 0;
+
+  for(i=0;i<ni.numPoint;i++)
+    for(j=0;j<ni.numPoint;j++)
+      ni.dist[i][j] = 0;
   
   while(fscanf(fp,"%d %d %lf",&begin,&end,&distance) != EOF){
     ni.adjacent[begin][end]++;
