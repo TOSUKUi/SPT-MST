@@ -6,13 +6,12 @@
 
 
 typedef struct Node{
-
   double dist_parent;
   int parent;
 }Node;
 
-int *func_dijkstra(Network_info,int,int);
+Node *func_dijkstra(Network_info,int,int);
 void func_setLengthOfAdjacencyNodes(Network_info,int,int*,Node*);
 int func_getMinimumNodeIndex(Network_info,int *,Node *);
-int func_min(int ,int);
+double func_min(double,double);
 #endif

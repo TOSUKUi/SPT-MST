@@ -7,13 +7,14 @@ FILE *func_InputFile(char *); //ファイル読み込み
 
 int main(int argc, char *argv[])
 {
-  int i;
-  double cost = 0;
+  int i,j;
+  double cost = 0.0;
   int start,goal;
   Network_info  ni;
   int *route;
   FILE *fp;
-  if(argc < 2){
+  Node *graph;
+  if(argc < 4){
     printf("Show this program's Usage:\n");
     printf("~this~.out ");
     printf("\x1b[31m");
@@ -29,18 +30,28 @@ int main(int argc, char *argv[])
   //ネットワークグラフに関する情報の取得
   ni = func_makeNetworkInformation(fp);
   //dijkstra法によるstart to goalの最短経路
-  route = func_dijkstra(ni,start,goal);
-  i=0;
-  printf("最短経路は:");
-  printf("%d ->",start);
-    
-  while(route[i+1] != -1){    
-    cost += ni.dist[route[i]][route[i+1]];
-    i++;      
-    printf("%d ->",route[i]);
+  graph = func_dijkstra(ni,start,goal);
+
+  
+  for(i=0;i<ni.numPoint;i++){
+    for(j=0;j<ni.numPoint;j++)
+      printf("%d ",ni.adjacent[i][j]);
+    printf("\n");
   }
+  
+  for(i=0;i<ni.numPoint;i++){
+    for(j=0;j<ni.numPoint;j++)
+      printf("%lf ",ni.dist[i][j]);
+    printf("\n");
+  }
+  for (i = goal; i != start; i = graph[i].parent) {
+    printf("%d <-",i);
+  }
+  printf("%d start",start);
   printf("\n");
-  printf("経路長 = %d\n",cost);
+  
+  printf("\n");
+  printf("経路長 = %lf\n",graph[goal].dist_parent);
   
   
   return 0;
