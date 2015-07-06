@@ -1,8 +1,8 @@
-STP-MST: Main_Dijkstra.o SPT/Dijkstra.o network_files/Network.o MST/Prim.o
-	gcc -Wall -O2  -o SPT-MST Main_Dijkstra.o SPT/Dijkstra.o network_files/Network.o MST/Prim.o
+STP-MST: SPT-MST.o SPT/Dijkstra.o network_files/Network.o MST/Prim.o
+	gcc -Wall -O2  -o SPT-MST SPT-MST.o SPT/Dijkstra.o network_files/Network.o MST/Prim.o
 
-Main_Dijkstra.o:Main_Dijkstra.c
-	gcc -c Main_Dijkstra.c
+SPT-MST.o:SPT-MST.c
+	gcc -c SPT-MST.c
 
 Dijkstra.o:SPT/Dijkstra.c
 	gcc -c SPT/Dijkstra.c
